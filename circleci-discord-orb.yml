@@ -1,11 +1,11 @@
 # This code is licensed from CircleCI to the user under the MIT license. See
 # https://circleci.com/orbs/registry/licensing for details.
-version: 2.1
+version: 2.2
 
 description: |
    Create and send custom notifications and messages to Discord for CircleCI job statuses. This orb uses the certified slack orb as a base with commands changed for usage in Discord. View the orb's source: https://github.com/antonioned/circleci-discord-orb 
 display:
-  source_url: https://github.com/antonioned/circleci-discord-orb
+  source_url: https://github.com/detatsatrio/circleci-discord-orb.git
 
 commands:
   status:
@@ -125,6 +125,7 @@ commands:
                       -d "{ \
                         \"embeds\": [ \
                             { \
+                                \"title\": \"App Successfully Deployed.   :rocket:   :rocket:   :rocket:\", \
                                 \"description\": \"<< parameters.success_message >>\", \
                                 \"color\": 3394662, \
                                 \"fields\": [ \
@@ -141,6 +142,37 @@ commands:
                                     { \
                                         \"name\": \"URL\", \
                                         \"value\": \"[Visit Job]($CIRCLE_BUILD_URL)\" \
+                                        \"inline\": true \
+                                    }, \
+                                    { \
+                                      \"name\": \"App\", \
+                                      \"value\": \"$APP_NAME\", \
+                                      \"inline\": true \
+                                    }, \
+                                    { \
+                                      \"name\": \"Release\", \
+                                      \"value\": \"$RELEASE\", \
+                                      \"inline\": true \
+                                    }, \
+                                    { \
+                                      \"name\": \"Version\", \
+                                      \"value\": \"$VERSION\", \
+                                      \"inline\": true \
+                                    }, \
+                                    { \
+                                      \"name\": \"Type\", \
+                                      \"value\": \"$TYPE\", \
+                                      \"inline\": true \
+                                    }, \
+                                    { \
+                                      \"name\": \"Platform\", \
+                                      \"value\": \"$PLATFORM\", \
+                                      \"inline\": true \
+                                    }, \
+                                    { \
+                                      \"name\": \"Mode\", \
+                                      \"value\": \"$MODE\", \
+                                      \"inline\": true \
                                     } \
                                   ] \
                             } \
@@ -283,7 +315,7 @@ example:
     usage:
       version: 2.1
       orbs:
-        discord: antonioned/discord@0.1.0
+        discord: detatsatrio/discord@0.1.1
       jobs:
         tests:
           steps:
@@ -293,7 +325,7 @@ example:
     usage:
       version: 2.1
       orbs:
-        discord: antonioned/discord@0.1.0
+        discord: detatsatrio/discord@0.1.1
       jobs:
         tests:
           steps:
